@@ -235,7 +235,7 @@
         }
 
         .card-img-box {
-            height: 280px; /* Decreased size as requested */
+            height: 360px;
             overflow: hidden;
         }
 
@@ -286,6 +286,34 @@
             color: #fff;
         }
 
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 22px;
+        }
+
+        .project-tag {
+            color: var(--text-main);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-family: inherit;
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .project-tag:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+
         /* --- MODAL --- */
         .modal-overlay {
             position: fixed;
@@ -315,9 +343,33 @@
             overflow: hidden;
             transform: scale(0.9) translateY(40px);
             transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
         }
 
         .modal-overlay.active .modal-container { transform: scale(1) translateY(0); }
+
+        .modal-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(15,23,42,0.72);
+            border: 1px solid rgba(255,255,255,0.14);
+            color: #fff;
+            cursor: pointer;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            transform: scale(1.08);
+        }
 
         .modal-carousel {
             height: 550px;
@@ -374,6 +426,43 @@
             grid-template-columns: 1fr 380px;
             gap: 50px;
             overflow-y: auto;
+        }
+
+        .modal-tags {
+            margin-bottom: 24px;
+        }
+
+        .framework-list {
+            list-style: none;
+            font-size: 15px;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .framework-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .framework-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            color: var(--accent-cyan);
+            background: rgba(6,182,212,0.1);
+            border: 1px solid rgba(6,182,212,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 28px;
+        }
+
+        .framework-icon svg {
+            width: 15px;
+            height: 15px;
         }
 
         .modal-footer {
@@ -452,7 +541,7 @@
             <!-- OTHER PROJECTS -->
             <section>
                 <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px;">
-                    <h2 style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em;">Other Analytics Projects</h2>
+                    <h2 style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em;"> Analytics Projects</h2>
                     <div class="filter-bar">
                         <button class="filter-btn active" data-filter="all">All Projects</button>
                         <button class="filter-btn" data-filter="sheets">Google Sheets</button>
@@ -468,6 +557,9 @@
                         <div class="card-body">
                             <span style="font-size: 11px; font-weight: 800; color: var(--accent-purple); display: block; margin-bottom: 12px;">GOOGLE SHEETS / BI</span>
                             <h3 class="card-title" style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">Interactive DVA Business Intelligence Dashboard</h3>
+                            <div class="project-tags">
+                                <button class="project-tag" type="button" onclick="filterProjects(event, 'sheets')">Google Sheets</button>
+                            </div>
                             <div class="card-stats">
                                 <div class="stat-item"><span class="stat-label">Core Tech</span><span class="stat-value">Pivot / KPI Logic</span></div>
                                 <div class="stat-item"><span class="stat-label">Insights</span><span class="stat-value">Trend Forecasting</span></div>
@@ -483,6 +575,9 @@
                         <div class="card-body">
                             <span style="font-size: 11px; font-weight: 800; color: var(--accent-cyan); display: block; margin-bottom: 12px;">TABLEAU / BI</span>
                             <h3 class="card-title" style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">Uber Ride Operational Density Analysis</h3>
+                            <div class="project-tags">
+                                <button class="project-tag" type="button" onclick="filterProjects(event, 'tableau')">Tableau BI</button>
+                            </div>
                             <div class="card-stats">
                                 <div class="stat-item"><span class="stat-label">Dataset</span><span class="stat-value">50K Ride Records</span></div>
                                 <div class="stat-item"><span class="stat-label">Method</span><span class="stat-value">Spatial Filtering</span></div>
@@ -497,6 +592,12 @@
     <!-- MODAL -->
     <div class="modal-overlay" id="modal">
         <div class="modal-container">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close project view">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
             <div class="modal-carousel">
                 <div class="carousel-track" id="track"></div>
                 <button class="nav-btn btn-l" onclick="move(-1)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
@@ -505,15 +606,28 @@
             <div class="modal-content">
                 <div>
                     <h2 id="m-title" style="font-size: 34px; font-weight: 800; margin-bottom: 24px;"></h2>
+                    <div class="project-tags modal-tags" id="m-tags"></div>
                     <p id="m-desc" style="color: var(--text-muted); font-size: 16px; line-height: 1.8;"></p>
                 </div>
                 <div style="background: var(--glass); padding: 32px; border-radius: 32px; height: fit-content; border: 1px solid var(--border);">
                     <h4 style="margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-cyan);">Analytical Framework</h4>
-                    <ul style="list-style: none; font-size: 15px; color: var(--text-main); display: flex; flex-direction: column; gap: 16px;">
-                        <li>🚀 Statistical Modeling & ETL</li>
-                        <li>📊 Multi-layered Visualization</li>
-                        <li>📈 Business Logic Automation</li>
-                        <li>🎯 Actionable Insight Delivery</li>
+                    <ul class="framework-list">
+                        <li>
+                            <span class="framework-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M8 15l3-3 3 2 5-6"></path></svg></span>
+                            Statistical Modeling & ETL
+                        </li>
+                        <li>
+                            <span class="framework-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="10" width="4" height="10"></rect><rect x="10" y="4" width="4" height="16"></rect><rect x="16" y="7" width="4" height="13"></rect></svg></span>
+                            Multi-layered Visualization
+                        </li>
+                        <li>
+                            <span class="framework-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 12h4l3 8 4-16 3 8h4"></path></svg></span>
+                            Business Logic Automation
+                        </li>
+                        <li>
+                            <span class="framework-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3"></path><path d="M12 19v3"></path><path d="M2 12h3"></path><path d="M19 12h3"></path></svg></span>
+                            Actionable Insight Delivery
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -530,6 +644,7 @@
             sheets: {
                 title: "DVA – Google Sheets Dashboard",
                 desc: "A full-scale Business Intelligence implementation within Google Sheets. This project demonstrates advanced data engineering using pivot logic, multi-stage lookup formulas, and automated KPI tracking to convert messy datasets into real-time decision-ready reports.",
+                tags: [{ label: "Google Sheets", filter: "sheets" }],
                 images: ["https://res.cloudinary.com/dvowfjsb4/image/upload/v1777392462/Dashboard_dlclgs.png"],
                 repo: "https://github.com/nipun1803/Section-A_DVA_Group-13",
                 link: "https://docs.google.com/spreadsheets/d/1LxDcVKBmP-0q5tzLr0PtYl5XSNiZD8AKb3fH8VQkD7Q/edit?gid=179962097#gid=179962097"
@@ -537,6 +652,7 @@
             tableau: {
                 title: "Uber Operations Data Storytelling",
                 desc: "A rigorous Tableau analysis of 50,000 ride records diagnosing fluctuations in ride demand and payment distribution. By implementing multi-layered spatial filters and temporal heatmaps, the dashboard identifies peak operational bottlenecks and high-value revenue sectors for ride-sharing optimization.",
+                tags: [{ label: "Tableau BI", filter: "tableau" }],
                 images: [
                     "https://res.cloudinary.com/dvowfjsb4/image/upload/v1777392619/Untitled_vkkeg0.jpg",
                     "https://res.cloudinary.com/dvowfjsb4/image/upload/v1777392665/Untitled1_gcy5jd.jpg",
@@ -551,17 +667,25 @@
         let curr = 0;
         let imgs = [];
 
+        function applyFilter(filter) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === filter);
+            });
+            document.querySelectorAll('.card').forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) card.classList.remove('hidden');
+                else card.classList.add('hidden');
+            });
+        }
+
+        function filterProjects(event, filter) {
+            event.stopPropagation();
+            applyFilter(filter);
+            closeModal();
+        }
+
         // Filtering Logic
         document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.dataset.filter;
-                document.querySelectorAll('.card').forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) card.classList.remove('hidden');
-                    else card.classList.add('hidden');
-                });
-            });
+            btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
         });
 
         function move(d) {
@@ -577,6 +701,16 @@
             document.getElementById('m-desc').innerText = d.desc;
             document.getElementById('m-link').href = d.link;
             document.getElementById('m-repo').href = d.repo;
+            const tagBox = document.getElementById('m-tags');
+            tagBox.innerHTML = '';
+            d.tags.forEach(tag => {
+                const el = document.createElement('button');
+                el.className = 'project-tag';
+                el.type = 'button';
+                el.innerText = tag.label;
+                el.onclick = event => filterProjects(event, tag.filter);
+                tagBox.appendChild(el);
+            });
             const t = document.getElementById('track');
             t.innerHTML = '';
             t.style.transform = 'translateX(0)';
