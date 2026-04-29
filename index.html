@@ -65,6 +65,7 @@
             align-items: center;
             text-align: center;
             box-shadow: var(--card-shadow);
+            z-index: 50;
         }
 
         .profile-img-container {
@@ -165,6 +166,28 @@
         }
 
         .contact-item a:hover { color: var(--primary); }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            font-size: 15px;
+            transition: 0.2s;
+            color: var(--text-main);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .contact-link:hover { color: var(--primary); }
+        .contact-link:hover svg { color: var(--primary); }
+        
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+            transition: 0.2s;
+        }
 
         /* --- MAIN CONTENT --- */
         .main-content {
@@ -211,7 +234,7 @@
         /* --- PROJECT GRID --- */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
             gap: 32px;
         }
 
@@ -235,7 +258,7 @@
         }
 
         .card-img-box {
-            height: 360px;
+            height: 280px;
             overflow: hidden;
         }
 
@@ -249,7 +272,7 @@
         .card:hover .card-img { transform: scale(1.08); }
 
         .card-body {
-            padding: 40px;
+            padding: 32px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -514,6 +537,7 @@
             </p>
             
             <div class="skills-mini">
+                <div class="skill-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg> Python</div>
                 <div class="skill-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg> Pandas</div>
                 <div class="skill-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> NumPy</div>
                 <div class="skill-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg> Seaborn</div>
@@ -522,16 +546,28 @@
 
             <ul class="contact-list">
                 <li class="contact-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    Hyderabad, India
+                    <div class="contact-link" style="cursor: default;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        Hyderabad, India
+                    </div>
                 </li>
-                <li class="contact-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    <a href="mailto:nipun2006134@gmail.com">nipun2006134@gmail.com</a>
+                <li class="contact-item" onclick="window.open('mailto:nipun2006134@gmail.com', '_blank')" style="cursor: pointer;">
+                    <div class="contact-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        nipun2006134@gmail.com
+                    </div>
                 </li>
-                <li class="contact-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    <a href="https://www.linkedin.com/in/nipun-patlori-2a5bb830a/" target="_blank">LinkedIn Profile</a>
+                <li class="contact-item" onclick="window.open('https://www.linkedin.com/in/nipun-patlori-2a5bb830a/', '_blank')" style="cursor: pointer;">
+                    <div class="contact-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        LinkedIn
+                    </div>
+                </li>
+                <li class="contact-item" onclick="window.open('https://github.com/nipun1803', '_blank')" style="cursor: pointer;">
+                    <div class="contact-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        GitHub Profile
+                    </div>
                 </li>
             </ul>
         </aside>
@@ -546,17 +582,35 @@
                         <button class="filter-btn active" data-filter="all">All Projects</button>
                         <button class="filter-btn" data-filter="sheets">Google Sheets</button>
                         <button class="filter-btn" data-filter="tableau">Tableau BI</button>
+                        <button class="filter-btn" data-filter="python">Python / ML</button>
                     </div>
                 </div>
                 
                 <div class="project-grid">
+                    <div class="card" data-category="python" onclick="openProject('rapido')">
+                        <div class="card-img-box">
+                            <img src="https://res.cloudinary.com/dvowfjsb4/image/upload/v1777444318/Untitled1_u6ocp8.jpg" alt="Rapido Analytics" class="card-img">
+                        </div>
+                        <div class="card-body">
+                            <span style="font-size: 11px; font-weight: 800; color: var(--primary); display: block; margin-bottom: 12px;">PYTHON / TABLEAU</span>
+                            <h3 class="card-title" style="font-size: 22px; font-weight: 800; margin-bottom: 24px;">Rapido Ride-Hailing Statistical Analysis</h3>
+                            <div class="project-tags">
+                                <button class="project-tag" type="button" onclick="filterProjects(event, 'python')">Python</button>
+                                <button class="project-tag" type="button" onclick="filterProjects(event, 'tableau')">Tableau</button>
+                            </div>
+                            <div class="card-stats">
+                                <div class="stat-item"><span class="stat-label">Analysis</span><span class="stat-value">EDA & Hypothesis</span></div>
+                                <div class="stat-item"><span class="stat-label">Impact</span><span class="stat-value">Revenue Recovery</span></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card" data-category="sheets" onclick="openProject('sheets')">
                         <div class="card-img-box">
                             <img src="https://res.cloudinary.com/dvowfjsb4/image/upload/v1777392462/Dashboard_dlclgs.png" alt="Sheets Dashboard" class="card-img">
                         </div>
                         <div class="card-body">
                             <span style="font-size: 11px; font-weight: 800; color: var(--accent-purple); display: block; margin-bottom: 12px;">GOOGLE SHEETS / BI</span>
-                            <h3 class="card-title" style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">Interactive DVA Business Intelligence Dashboard</h3>
+                            <h3 class="card-title" style="font-size: 22px; font-weight: 800; margin-bottom: 24px;">AI at Work: Efficiency vs. Sustainability</h3>
                             <div class="project-tags">
                                 <button class="project-tag" type="button" onclick="filterProjects(event, 'sheets')">Google Sheets</button>
                             </div>
@@ -574,7 +628,7 @@
                         </div>
                         <div class="card-body">
                             <span style="font-size: 11px; font-weight: 800; color: var(--accent-cyan); display: block; margin-bottom: 12px;">TABLEAU / BI</span>
-                            <h3 class="card-title" style="font-size: 24px; font-weight: 800; margin-bottom: 24px;">Uber Ride Operational Density Analysis</h3>
+                            <h3 class="card-title" style="font-size: 22px; font-weight: 800; margin-bottom: 24px;">Uber Ride Operational Density Analysis</h3>
                             <div class="project-tags">
                                 <button class="project-tag" type="button" onclick="filterProjects(event, 'tableau')">Tableau BI</button>
                             </div>
@@ -633,8 +687,8 @@
             </div>
             <div class="modal-footer">
                 <button onclick="closeModal()" style="background: transparent; color: var(--text-muted); border: none; cursor: pointer; font-weight: 600;">Close View</button>
-                <a href="#" id="m-repo" target="_blank" class="btn btn-s"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> Repository</a>
-                <a href="#" id="m-link" target="_blank" class="btn btn-p"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Live Dashboard</a>
+                <button id="m-repo" onclick="window.open(this.getAttribute('data-href'), '_blank')" class="btn btn-s" style="cursor: pointer; z-index: 10001; pointer-events: auto;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg> Repository</button>
+                <button id="m-link" onclick="window.open(this.getAttribute('data-href'), '_blank')" class="btn btn-p" style="cursor: pointer; border: none; z-index: 10001; pointer-events: auto;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Live Dashboard</button>
             </div>
         </div>
     </div>
@@ -642,8 +696,8 @@
     <script>
         const projectData = {
             sheets: {
-                title: "DVA – Google Sheets Dashboard",
-                desc: "A full-scale Business Intelligence implementation within Google Sheets. This project demonstrates advanced data engineering using pivot logic, multi-stage lookup formulas, and automated KPI tracking to convert messy datasets into real-time decision-ready reports.",
+                title: "AI at Work: Efficiency vs. Sustainability",
+                desc: "AI at Work: Efficiency vs. Sustainability\n\nEngineered a complete data-to-insights pipeline analyzing 5,600 employee records across 21 variables, with 6 custom KPIs measuring productivity, burnout risk, and sustainability.\n\nDesigned and deployed a 3-view interactive dashboard in Google Sheets, enabling executives and HR leaders to monitor AI adoption efficiency, performance-health trade-offs, and long-term workforce risks.\n\nConducted systematic data cleaning (median imputation, text normalization, categorical standardization) ensuring 100% validated dataset with reproducible methodology and audit-ready lineage.\n\nDelivered actionable insights: identified that medium AI usage (5–12 hrs/week) maximizes sustainable output, while excessive AI adoption increases burnout and error rates.\n\nProposed governance and workforce strategies including AI usage policy, sustainability KPIs in reviews, deep work protection, and learning program redesign — linking analytics to measurable cost savings and risk reduction.",
                 tags: [{ label: "Google Sheets", filter: "sheets" }],
                 images: ["https://res.cloudinary.com/dvowfjsb4/image/upload/v1777392462/Dashboard_dlclgs.png"],
                 repo: "https://github.com/nipun1803/Section-A_DVA_Group-13",
@@ -659,8 +713,18 @@
                     "https://res.cloudinary.com/dvowfjsb4/image/upload/v1777392688/Untitled2_g8c4rd.jpg",
                     "https://res.cloudinary.com/dvowfjsb4/image/upload/v1777392720/Untitled3_lwwzjn.jpg"
                 ],
-                repo: "https://github.com/nipun1803/Uber-Data-Analytics",
                 link: "https://public.tableau.com/app/profile/nipun.patlori/viz/Dashboard_Uber_17773669867660/Dashboard1"
+            },
+            rapido: {
+                title: "Rapido Ride Analysis: Understanding Demand, Cancellations & Revenue in Bangalore",
+                desc: "Rapido Ride Analysis: Understanding Demand, Cancellations & Revenue in Bangalore\nThis project analyzed 50,000 ride-level transactions from Rapido in Bangalore to uncover demand patterns, cancellation behavior, and revenue distribution. Using a structured ETL pipeline (Python, Pandas), the team cleaned and transformed raw data into an analysis-ready dataset with engineered features such as peak-hour flags, fare-per-km, and ride efficiency metrics.\n\nKey contributions included:\n\nData Cleaning & ETL: Designed a robust pipeline handling missing values, anomalies, and categorical standardization.\n\nExploratory & Statistical Analysis: Identified peak-hour bottlenecks, high-cancellation zones, and service-specific inefficiencies.\n\nVisualization (Tableau): Built interactive dashboards highlighting cancellation hotspots, revenue trends, and operational insights.\n\nBusiness Recommendations: Proposed driver allocation strategies, surge incentives, and service-specific supply planning to reduce cancellations and maximize revenue.\n\nImpact: Enabled actionable insights for ride-hailing operations, improving resource allocation and customer trust while supporting data-driven decision-making.",
+                tags: [{ label: "Python", filter: "python" }, { label: "Tableau", filter: "tableau" }],
+                images: [
+                    "https://res.cloudinary.com/dvowfjsb4/image/upload/v1777444318/Untitled1_u6ocp8.jpg",
+                    "https://res.cloudinary.com/dvowfjsb4/image/upload/v1777444319/Untitled2_gd9tjy.jpg"
+                ],
+                repo: "https://github.com/nipun1803/Rapido_Ride_Analysis",
+                link: "https://github.com/nipun1803/Rapido_Ride_Analysis/"
             }
         };
 
@@ -699,8 +763,14 @@
             curr = 0;
             document.getElementById('m-title').innerText = d.title;
             document.getElementById('m-desc').innerText = d.desc;
-            document.getElementById('m-link').href = d.link;
-            document.getElementById('m-repo').href = d.repo;
+            document.getElementById('m-link').setAttribute('data-href', d.link);
+            const repoBtn = document.getElementById('m-repo');
+            if (d.repo) {
+                repoBtn.setAttribute('data-href', d.repo);
+                repoBtn.style.display = 'flex';
+            } else {
+                repoBtn.style.display = 'none';
+            }
             const tagBox = document.getElementById('m-tags');
             tagBox.innerHTML = '';
             d.tags.forEach(tag => {
